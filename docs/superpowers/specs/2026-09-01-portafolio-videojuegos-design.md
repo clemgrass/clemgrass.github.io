@@ -243,8 +243,7 @@ es publicable en ese estado.
 
 ## Layout y comportamiento visual
 
-- Encabezado mínimo: nombre, "Computer Engineer — Universidad de Chile", una
-  línea de presentación.
+- Encabezado mínimo: nombre y "Software Engineer — Universidad de Chile".
 - Cinco filas de proyecto, ordenadas por `order`, alternando el lado de la media.
 - Pie con links de contacto (GitHub, LinkedIn, itch, correo).
 - Responsive: bajo ~800px las filas colapsan a una columna, media arriba e
