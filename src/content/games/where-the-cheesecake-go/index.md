@@ -4,7 +4,7 @@ status: prototype
 role: pair
 teamSize: 2
 contribution: >
-  PROVISIONAL — el autor tiene que escribir qué hizo él dentro de la pareja.
+  Everything story-related, and a large share of the codebase.
 context: University course · singleplayer game development
 engine: Godot 3
 tech: [GDScript, Lua]

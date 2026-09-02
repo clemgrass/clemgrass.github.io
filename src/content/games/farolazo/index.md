@@ -3,9 +3,9 @@ title: Farolazo
 status: released
 role: consultant
 contribution: >
-  Joined as a consultant. Set up the initial scaffolding and made the
-  architectural decisions, and designed the card selection algorithm that
-  drives the game.
+  Came in as a consultant: set up the initial scaffolding, made the technology
+  decisions, designed the algorithm that deals the cards, and advised on game
+  design calls.
 context: Consulting work
 engine: Web
 tech: [TypeScript, PostgreSQL]

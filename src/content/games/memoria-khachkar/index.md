@@ -3,8 +3,8 @@ title: Memoria Khachkar
 status: thesis
 role: solo
 contribution: >
-  Sole author: design, programming and technical art. Built as my computer
-  engineering thesis at Universidad de Chile.
+  Built the entire game except its textures — design and programming both.
+  Submitted as my computer engineering thesis at Universidad de Chile.
 context: Thesis · Universidad de Chile
 engine: Godot 4.6
 tech: [GDScript, GL Compatibility]

@@ -3,9 +3,9 @@ title: SONAR
 status: in-development
 role: solo
 contribution: >
-  Sole author. Built the sonar simulation, the enemy AI and the autopilot
-  system, with the game logic split into testable C# libraries separate from
-  the engine layer.
+  Sole author — every part of it is mine: the sonar simulation, the enemy AI
+  and the autopilot, with the game logic kept in testable C# libraries
+  separate from the engine layer.
 context: Personal project
 engine: Godot 4
 tech: [C#, .NET, xUnit]
