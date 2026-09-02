@@ -1,9 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import GameRow from '../components/GameRow.astro';
 ---
 <Base
   title="Clemente Grass — Games"
   description="Games and game systems built by Clemente Grass, computer engineer."
 >
-  <p>Rows go here.</p>
+  <GameRow
+    title="Memoria Khachkar"
+    year={2026}
+    context="Thesis · Universidad de Chile"
+    role="solo"
+    contribution="Sole author: design, programming and technical art. Built as my computer engineering thesis project."
+    engine="Godot 4.6"
+    tech={['GDScript', 'GL Compatibility']}
+    link={{ kind: 'none', url: null, label: null }}
+    clip={null}
+    flipped={false}
+  />
 </Base>

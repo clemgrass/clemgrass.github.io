@@ -1,0 +1,96 @@
+---
+import type { ImageMetadata } from 'astro';
+import MediaFrame from './MediaFrame.astro';
+import RoleBadge from './RoleBadge.astro';
+import TagList from './TagList.astro';
+import LinkButton from './LinkButton.astro';
+
+interface Props {
+  title: string;
+  year: number;
+  context: string;
+  role: 'solo' | 'pair' | 'team' | 'consultant';
+  teamSize?: number;
+  contribution: string;
+  engine: string;
+  tech: string[];
+  link: { kind: 'itch' | 'external' | 'none'; url: string | null; label: string | null };
+  cover?: ImageMetadata;
+  clip: string | null;
+  flipped: boolean;
+}
+
+const {
+  title,
+  year,
+  context,
+  role,
+  teamSize,
+  contribution,
+  engine,
+  tech,
+  link,
+  cover,
+  clip,
+  flipped,
+} = Astro.props;
+---
+<article class:list={['row', { 'row--flipped': flipped }]}>
+  <div class="row-media">
+    <MediaFrame title={title} engine={engine} cover={cover} clip={clip} />
+  </div>
+  <div class="row-info">
+    <h2 class="row-title">{title}</h2>
+    <div class="row-meta">
+      <RoleBadge role={role} teamSize={teamSize} />
+      <span class="meta-item">{context}</span>
+      <span class="meta-item">{year}</span>
+    </div>
+    <p class="row-contribution">{contribution}</p>
+    <TagList engine={engine} tech={tech} />
+    <LinkButton kind={link.kind} url={link.url} label={link.label} />
+  </div>
+</article>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .row:last-child {
+    border-bottom: 0;
+  }
+  .row--flipped .row-media {
+    order: 2;
+  }
+  .row-title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    line-height: 1.15;
+    margin: 0 0 var(--space-2);
+    letter-spacing: -0.015em;
+  }
+  .row-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .meta-item {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.15rem var(--space-3);
+  }
+  .row-contribution {
+    margin: 0 0 var(--space-4);
+    color: var(--text);
+    max-width: 46ch;
+  }
+</style>
