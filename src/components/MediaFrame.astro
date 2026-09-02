@@ -1,0 +1,100 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  engine: string;
+  cover?: ImageMetadata;
+  clip: string | null;
+}
+
+const { title, engine, cover, clip } = Astro.props;
+---
+{
+  clip ? (
+    <video
+      class="media"
+      data-play-on-view
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster={cover?.src}
+      aria-label={`Gameplay clip of ${title}`}
+    >
+      <source src={clip} type="video/webm" />
+    </video>
+  ) : cover ? (
+    <Image
+      class="media"
+      src={cover}
+      alt={`Screenshot of ${title}`}
+      widths={[480, 800, 1200]}
+      sizes="(max-width: 800px) 100vw, 55vw"
+    />
+  ) : (
+    <div class="media media--empty" role="img" aria-label={`No media available yet for ${title}`}>
+      <span class="empty-title">{title}</span>
+      <span class="empty-engine">{engine}</span>
+    </div>
+  )
+}
+
+<style>
+  .media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .media--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent 0 12px,
+        color-mix(in srgb, var(--border) 45%, transparent) 12px 13px
+      ),
+      var(--surface);
+  }
+  .empty-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .empty-engine {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+</style>
+
+<script>
+  const videos = document.querySelectorAll<HTMLVideoElement>('video[data-play-on-view]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (videos.length > 0 && !prefersReducedMotion) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              /* autoplay blocked by the browser; the poster stays visible */
+            });
+          } else {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+  }
+</script>
