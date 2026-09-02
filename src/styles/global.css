@@ -5,7 +5,9 @@
   --text: #e9ebef;
   --text-dim: #969ca8;
   --accent: #ff5c39;
-  --accent-text: #ffffff;
+  /* Dark ink on the bright orange: white would only reach 3.07:1, below the
+     4.5:1 that WCAG AA asks for at this text size. */
+  --accent-text: #17100d;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
