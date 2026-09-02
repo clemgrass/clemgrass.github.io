@@ -1835,3 +1835,21 @@ Estas tareas están fuera del plan porque nadie más que él puede hacerlas, per
 - [ ] Crear la cuenta de itch.io, subir los builds y pasar las fichas correspondientes de `link.kind: none` a `itch` con su URL.
 - [ ] Aportar los links de LinkedIn e itch.io para el footer.
 ````
+
+---
+
+## Cambios durante la ejecución
+
+El plan se ejecutó completo el 2026-09-01. Lo que se desvió de lo escrito, y por qué:
+
+**Se eliminó el campo `year`.** Decisión del autor en la revisión del corte 3. Se quitó del schema, de las cinco fichas, de `GameRow` y de la vista. El spec quedó actualizado; las tareas 5, 6 y 7 de este plan todavía lo muestran en su código de ejemplo.
+
+**Los datos de Hot Potato salieron de itch.io, no del autor.** Buscando la URL para el footer apareció que ya existe cuenta (`clementegrass.itch.io`, no `clemgrass`) y que el juego ya está publicado ahí como *Papa Caliente*, con crédito a tres autores. Eso reemplazó tres valores que el plan traía como relleno: `teamSize` pasó de 4 a 3, `link.kind` de `none` a `itch` con URL real, y `status` a `released`. El título quedó en inglés como *Hot Potato* por decisión del autor.
+
+**El placeholder de media muestra solo el motor.** En la revisión del corte 2 se detectó que mostrar el título dentro del recuadro lo duplicaba con el `<h2>` de al lado. Se quitó el título; la etiqueta para lectores de pantalla lo conserva.
+
+**Se corrigió el contraste del acento en tema oscuro.** El plan definía `--accent-text: #ffffff` en ambos temas. Medido en el navegador, blanco sobre `#ff5c39` da 3.07:1, bajo el 4.5:1 que exige WCAG AA a ese tamaño de texto. Se cambió a tinta oscura (`#17100d`) solo en el tema oscuro: 6.13:1, con el naranjo intacto.
+
+**GitHub Pages ya estaba habilitado en modo `legacy`.** El `POST` de la Tarea 10 devolvió 409; se resolvió con el `PUT` que el propio plan tenía previsto como alternativa.
+
+**Pendiente del autor:** la URL de LinkedIn para el footer. Es lo único que quedó sin cerrar de todo lo que dependía de una respuesta suya.
