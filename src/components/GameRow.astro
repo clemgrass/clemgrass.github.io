@@ -90,4 +90,20 @@ const {
     color: var(--text);
     max-width: 46ch;
   }
+
+  @media (max-width: 800px) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding: var(--space-6) 0;
+    }
+    /* On one column the media always goes first: alternating sides only
+       makes sense when there are two columns to alternate between. */
+    .row--flipped .row-media {
+      order: 0;
+    }
+    .row-contribution {
+      max-width: none;
+    }
+  }
 </style>
