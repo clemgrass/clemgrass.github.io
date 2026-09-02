@@ -1,0 +1,45 @@
+---
+interface Props {
+  kind: 'itch' | 'external' | 'none';
+  url: string | null;
+  label: string | null;
+}
+
+const { kind, url, label } = Astro.props;
+
+const text =
+  kind === 'itch' ? 'Get it on itch.io' : kind === 'external' ? label : 'Build coming soon';
+---
+{
+  kind === 'none' ? (
+    <span class="btn btn--off">{text}</span>
+  ) : (
+    <a class="btn" href={url} target="_blank" rel="noopener noreferrer">
+      {text} <span aria-hidden="true">↗</span>
+      <span class="sr-only">(opens in a new tab)</span>
+    </a>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 7px;
+    text-decoration: none;
+  }
+  .btn:hover {
+    filter: brightness(1.1);
+  }
+  .btn--off {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px dashed var(--border);
+    font-weight: 500;
+    cursor: default;
+  }
+</style>

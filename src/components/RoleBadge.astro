@@ -1,0 +1,30 @@
+---
+interface Props {
+  role: 'solo' | 'pair' | 'team' | 'consultant';
+  teamSize?: number;
+}
+
+const { role, teamSize } = Astro.props;
+
+const staticLabels = {
+  solo: 'Solo',
+  pair: 'Pair',
+  consultant: 'Consultant',
+} as const;
+
+const label = role === 'team' ? `Team of ${teamSize}` : staticLabels[role];
+---
+<span class="role">{label}</span>
+
+<style>
+  .role {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.15rem var(--space-3);
+    border-radius: 999px;
+  }
+</style>
