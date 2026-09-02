@@ -1,6 +1,5 @@
 ---
 title: Papa Caliente
-year: 2026 # CONFIRMAR con el autor
 status: released
 role: team
 teamSize: 3

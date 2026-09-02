@@ -28,7 +28,6 @@ export function makeGameSchema({ image, fileExists = publicFileExists }: SchemaD
   return z
     .object({
       title: z.string().min(1),
-      year: z.number().int().min(2000).max(2100),
       status: z.enum(STATUSES),
       role: z.enum(ROLES),
       contribution: z.string().min(1),

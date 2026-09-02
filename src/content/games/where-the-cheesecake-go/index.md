@@ -1,6 +1,5 @@
 ---
 title: Where The Cheesecakes Go
-year: 2026 # CONFIRMAR con el autor
 status: prototype
 role: pair
 teamSize: 2

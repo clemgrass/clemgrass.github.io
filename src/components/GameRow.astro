@@ -7,7 +7,6 @@ import LinkButton from './LinkButton.astro';
 
 interface Props {
   title: string;
-  year: number;
   context: string;
   role: 'solo' | 'pair' | 'team' | 'consultant';
   teamSize?: number;
@@ -22,7 +21,6 @@ interface Props {
 
 const {
   title,
-  year,
   context,
   role,
   teamSize,
@@ -44,7 +42,6 @@ const {
     <div class="row-meta">
       <RoleBadge role={role} teamSize={teamSize} />
       <span class="meta-item">{context}</span>
-      <span class="meta-item">{year}</span>
     </div>
     <p class="row-contribution">{contribution}</p>
     <TagList engine={engine} tech={tech} />

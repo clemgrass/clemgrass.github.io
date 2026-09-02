@@ -1,6 +1,5 @@
 ---
 title: SONAR
-year: 2026
 status: in-development
 role: solo
 contribution: >

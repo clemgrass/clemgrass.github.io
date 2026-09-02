@@ -1,6 +1,5 @@
 ---
 title: Farolazo
-year: 2026 # CONFIRMAR con el autor
 status: released
 role: consultant
 contribution: >

@@ -140,7 +140,6 @@ deja vacío.
 ```yaml
 ---
 title: SONAR
-year: 2026
 status: in-development      # prototype | in-development | demo | released | thesis
 role: solo                  # solo | pair | team | consultant
 contribution: >
@@ -164,8 +163,10 @@ detail: false               # reservado; no se renderiza vista de detalle en est
 
 **Reglas de validación (Zod, se aplican en build):**
 
-- `title`, `year`, `status`, `role`, `contribution`, `engine`, `tech`, `link`,
-  `order` son obligatorios.
+- `title`, `status`, `role`, `contribution`, `engine`, `tech`, `link` y `order`
+  son obligatorios. **No hay campo `year`**: el autor decidió no mostrar años,
+  porque fechar proyectos de universidad envejece el portafolio sin aportar
+  nada que el lector necesite.
 - `status` y `role` son enums cerrados. Un valor fuera del enum falla el build.
 - Si `link.kind` es `itch` o `external`, `link.url` es obligatorio y debe ser una
   URL válida. Si `link.kind` es `none`, `link.url` debe ser `null`.
@@ -232,7 +233,6 @@ diseñó el algoritmo de selección de cartas.
 incluir como tarea explícita suya, no del implementador:
 
 - `contribution` de los cinco proyectos (una o dos frases en inglés).
-- `year` real de cada proyecto (la fecha de último push no sirve como año).
 - `teamSize` de `hot-potato`.
 - Los clips y capturas.
 - Las URLs de itch una vez creados los proyectos ahí.

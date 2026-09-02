@@ -12,7 +12,6 @@ const schema = makeGameSchema({
 function valid(overrides: Record<string, unknown> = {}) {
   return {
     title: 'SONAR',
-    year: 2026,
     status: 'in-development',
     role: 'solo',
     contribution: 'Built the whole thing.',

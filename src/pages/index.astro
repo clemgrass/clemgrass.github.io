@@ -18,7 +18,6 @@ const ordered = games.sort((a, b) => a.data.order - b.data.order);
     ordered.map((game, index) => (
       <GameRow
         title={game.data.title}
-        year={game.data.year}
         context={game.data.context}
         role={game.data.role}
         teamSize={game.data.teamSize}
