@@ -88,7 +88,9 @@ Todo lo de la lista de fuera cabe después sin rediseñar el modelo de contenido
   se pida explícitamente. El único JS del sitio es un script suelto de pocas
   líneas que arranca los clips cuando entran en viewport; no hay islas ni
   framework de componentes en el cliente.
-- **Content collections + Zod** para el modelo de datos y su validación.
+- **Content collections + Zod** para el modelo de datos y su validación. La
+  colección se declara en `src/content.config.ts` con un loader `glob()`; el
+  schema vive en `src/content/schema.ts` para poder testearlo fuera de Astro.
 - **CSS propio** (custom properties + flexbox/grid). No hay framework de UI: el
   sitio tiene un componente visual real, no justifica la dependencia.
 - **GitHub Actions → GitHub Pages** para el deploy.
@@ -98,8 +100,9 @@ Todo lo de la lista de fuera cabe después sin rediseñar el modelo de contenido
 ```
 PortafolioVG/
 ├── src/
+│   ├── content.config.ts             # declara la colección `games`
 │   ├── content/
-│   │   ├── config.ts                 # schema Zod de la colección `games`
+│   │   ├── schema.ts                 # schema Zod puro (testeable aparte)
 │   │   └── games/
 │   │       ├── _template/            # plantilla para juegos futuros
 │   │       │   └── index.md
