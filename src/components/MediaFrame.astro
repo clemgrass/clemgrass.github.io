@@ -35,7 +35,6 @@ const { title, engine, cover, clip } = Astro.props;
     />
   ) : (
     <div class="media media--empty" role="img" aria-label={`No media available yet for ${title}`}>
-      <span class="empty-title">{title}</span>
       <span class="empty-engine">{engine}</span>
     </div>
   )
@@ -64,12 +63,11 @@ const { title, engine, cover, clip } = Astro.props;
       ),
       var(--surface);
   }
-  .empty-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
   .empty-engine {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--text-dim);
   }
 </style>
