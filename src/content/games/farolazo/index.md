@@ -14,6 +14,7 @@ link:
   url: https://farolazo.com
   label: Visit farolazo.com
 media:
+  cover: ./cover.png
   clip: null
 featured: true
 order: 3
