@@ -1,21 +1,35 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import GameRow from '../components/GameRow.astro';
+import { assertUniqueOrder } from '../content/order';
+
+const games = await getCollection('games');
+
+assertUniqueOrder(games.map((g) => ({ id: g.id, order: g.data.order })));
+
+const ordered = games.sort((a, b) => a.data.order - b.data.order);
 ---
 <Base
   title="Clemente Grass — Games"
   description="Games and game systems built by Clemente Grass, computer engineer."
 >
-  <GameRow
-    title="Memoria Khachkar"
-    year={2026}
-    context="Thesis · Universidad de Chile"
-    role="solo"
-    contribution="Sole author: design, programming and technical art. Built as my computer engineering thesis project."
-    engine="Godot 4.6"
-    tech={['GDScript', 'GL Compatibility']}
-    link={{ kind: 'none', url: null, label: null }}
-    clip={null}
-    flipped={false}
-  />
+  {
+    ordered.map((game, index) => (
+      <GameRow
+        title={game.data.title}
+        year={game.data.year}
+        context={game.data.context}
+        role={game.data.role}
+        teamSize={game.data.teamSize}
+        contribution={game.data.contribution}
+        engine={game.data.engine}
+        tech={game.data.tech}
+        link={game.data.link}
+        cover={game.data.media.cover}
+        clip={game.data.media.clip}
+        flipped={index % 2 === 1}
+      />
+    ))
+  }
 </Base>
