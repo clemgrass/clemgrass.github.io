@@ -4,7 +4,7 @@ status: prototype
 role: pair
 teamSize: 2
 contribution: >
-  Everything story-related, and a large share of the codebase.
+  Everything story-related, and part of the codebase.
 context: University course · singleplayer game development
 engine: Godot 3
 tech: [GDScript, Lua]

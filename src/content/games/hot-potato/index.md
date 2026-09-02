@@ -4,8 +4,8 @@ status: released
 role: team
 teamSize: 3
 contribution: >
-  Most of the level design, plus testing and balancing, and a share of the
-  general gameplay code.
+  Most of the level design, plus testing and balancing, and general
+  gameplay code.
 context: University course · multiplayer game development
 engine: Godot 4.2
 tech: [GDScript, ENet]
