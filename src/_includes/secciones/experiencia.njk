@@ -1,0 +1,36 @@
+{%- from "macros.njk" import t -%}
+<section class="experiencia">
+  {%- if sitio.enCurso.length %}
+  <div class="en-curso">
+    <h2 data-z="in">{{ t(sitio.textos.enCurso) }}</h2>
+    <div class="tarjetas">
+      {%- for e in sitio.enCurso %}
+      <article class="tarjeta" data-z="in">
+        <div class="tarjeta-arriba">
+          <span class="tarjeta-etiqueta">{{ t(sitio.textos.etiquetaEnCurso) }}</span>
+          <span class="tarjeta-fecha">{{ t(e.fecha) }}</span>
+        </div>
+        <div class="tarjeta-titulo">
+          <h3>{{ t(e.cargo) }}</h3>
+          <span class="tarjeta-empresa">{{ t(e.empresa) }}</span>
+        </div>
+        <p>{{ t(e.descripcion) }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif %}
+  {%- if sitio.completadas.length %}
+  <div class="completadas">
+    <span class="completadas-titulo" data-z="in">{{ t(sitio.textos.completadas) }}</span>
+    <div class="completadas-lista">
+      {%- for e in sitio.completadas %}
+      <div class="fila" data-z="in">
+        <span class="fila-empresa">{{ t(e.empresa) }} <span class="fila-cargo">— {{ t(e.cargo) }}</span></span>
+        <span class="fila-fecha">{{ t(e.fecha) }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif %}
+</section>

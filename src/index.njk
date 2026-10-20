@@ -1,0 +1,28 @@
+---
+permalink: index.html
+---
+{%- set g = sitio.general -%}
+<!doctype html>
+<html lang="es"
+  data-titulo-es="{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.es }}"
+  data-titulo-en="{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.en }}"
+  data-desc-es="{{ g.pitch.es }}"
+  data-desc-en="{{ g.pitch.en }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.es }}</title>
+<meta name="description" content="{{ g.pitch.es }}">
+</head>
+<body>
+{% include "secciones/control.njk" %}
+<main class="contenedor">
+{% include "secciones/hero.njk" %}
+{% include "secciones/pitch.njk" %}
+{% include "secciones/experiencia.njk" %}
+{% include "secciones/formacion.njk" %}
+{% include "secciones/cine.njk" %}
+{% include "secciones/contacto.njk" %}
+</main>
+</body>
+</html>
