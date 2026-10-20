@@ -55,7 +55,10 @@ body {
   font-family: 'Bricolage Grotesque', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Un enlace o palabra muy larga se corta en vez de empujar la página hacia el lado. */
+  overflow-wrap: anywhere;
 }
+h1, h2, h3, .formacion-titulo { hyphens: auto; }
 a { color: var(--tinta); }
 a:hover { color: var(--acento-hover); }
 ::selection { background: var(--acento); color: #fff; }
