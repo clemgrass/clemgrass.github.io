@@ -9,17 +9,6 @@ test('el contenido real es válido', () => {
   assert.deepEqual(cargarContenido('contenido').errores, []);
 });
 
-test('cantidades y orden', () => {
-  const c = cargarContenido('contenido').contenido;
-  assert.deepEqual(c.experiencia.filter(e => e.enCurso).map(e => e.empresa.es), ['Niñas Pro', 'JAPS Engineering SpA']);
-  assert.equal(c.experiencia.filter(e => !e.enCurso).length, 6);
-  assert.deepEqual(c.formacion.map(f => f.institucion), ['Universidad de Chile', 'Universidad de Chile', 'Saint George’s College']);
-  assert.equal(c.cine.length, 3);
-  assert.match(c.cine[0].titulo.es, /Festival Cine Joven/);
-  assert.match(c.cine[1].titulo.es, /Querida Beauchefiana/);
-  assert.match(c.cine[2].titulo.es, /Líder de grupo de cine/);
-});
-
 test('los archivos de ejemplo también son válidos', () => {
   for (const carpeta of ['experiencia', 'formacion', 'cine']) {
     const ejemplo = fs.readFileSync(`contenido/${carpeta}/_EJEMPLO.md`, 'utf8');

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { crearContenido, contenidoValido, experiencia, GENERAL } from './ayuda.js';
+import { crearContenido, contenidoValido, contenidoCompleto, experiencia, GENERAL } from './ayuda.js';
 
 function construir(contenidoDir = 'contenido') {
   const salida = fs.mkdtempSync(path.join(os.tmpdir(), 'sitio-'));
@@ -18,14 +18,19 @@ test('build real', () => {
   const { status, html, stderr } = construir();
   assert.equal(status, 0, stderr);
   assert.match(html, /<html lang="es"/);
+  assert.ok(!/Descargar CV|Download CV|\.pdf|7999/.test(html));
+  assert.ok(!/fonts\.googleapis|(href|src)="\//.test(html));
+  assert.ok(html.includes('mailto:cgrassdev@gmail.com'));
+});
+
+test('build: tarjetas, orden y textos', () => {
+  const { status, html } = construir(crearContenido(contenidoCompleto()));
+  assert.equal(status, 0);
   assert.equal((html.match(/class="tarjeta"/g) || []).length, 2);
   assert.ok(html.indexOf('Niñas Pro') < html.indexOf('JAPS Engineering SpA'));
   assert.ok(html.includes('Partida en curso') && html.includes('Currently playing'));
-  assert.ok(!/Descargar CV|Download CV|\.pdf|7999/.test(html));
-  assert.ok(!/fonts\.googleapis|(href|src)="\//.test(html));
-  const iF = html.indexOf('Festival Cine Joven'), iQ = html.indexOf('Querida Beauchefiana'), iL = html.indexOf('Líder de grupo de cine');
-  assert.ok(iF < iQ && iQ < iL);
-  assert.ok(html.includes('mailto:cgrassdev@gmail.com'));
+  const iF = html.indexOf('>Festival<'), iQ = html.indexOf('>Querida<'), iL = html.indexOf('>Líder de grupo de cine<');
+  assert.ok(iF > 0 && iF < iQ && iQ < iL);
 });
 
 test('[RF 4] texto con < & se escapa', () => {

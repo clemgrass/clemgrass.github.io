@@ -95,3 +95,15 @@ export function contenidoValido() {
     'cine/2023-lider.md': CINE
   };
 }
+
+// Set con varias entradas por sección, para probar orden y reparto.
+export function contenidoCompleto() {
+  const cine = (titulo, inicio) => CINE.replace('titulo_es: Líder de grupo de cine', `titulo_es: ${titulo}`).replace('inicio: 2023-01', `inicio: ${inicio}`);
+  return {
+    ...contenidoValido(),
+    'experiencia/2026-ninas.md': experiencia({ empresa: 'Niñas Pro', inicio: '2026-10' }),
+    'formacion/2019-bachiller.md': FORMACION.replace('inicio: 2021-03', 'inicio: 2019-03').replace('memoria_tipo: memoria', 'memoria_tipo: monografia'),
+    'cine/2024-festival.md': cine('Festival', '2024-07'),
+    'cine/2024-querida.md': cine('Querida', '2024-03')
+  };
+}

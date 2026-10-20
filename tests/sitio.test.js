@@ -4,6 +4,7 @@ import { mesYAnio } from '../lib/fechas.js';
 import { textosInterfaz } from '../lib/textos.js';
 import { prepararSitio } from '../lib/sitio.js';
 import { cargarContenido } from '../lib/contenido.js';
+import { crearContenido, contenidoCompleto } from './ayuda.js';
 
 test('mesYAnio en zona de Santiago', () => {
   assert.deepEqual(mesYAnio(new Date('2026-10-19T12:00:00Z')), { es: 'Oct 2026', en: 'Oct 2026' });
@@ -23,12 +24,18 @@ test('textos gamer y neutros', () => {
   assert.deepEqual(textosInterfaz(false).desplazate, { es: 'Desplázate para continuar', en: 'Scroll to continue' });
 });
 
+test('prepararSitio funciona con el contenido real', () => {
+  const s = prepararSitio(cargarContenido('contenido').contenido, new Date());
+  assert.ok(s.formacionPrincipal);
+});
+
 test('prepararSitio separa y desplaza', () => {
-  const s = prepararSitio(cargarContenido('contenido').contenido, new Date('2026-10-19T12:00:00Z'));
-  assert.equal(s.enCurso.length, 2);
-  assert.equal(s.completadas.length, 6);
+  const s = prepararSitio(cargarContenido(crearContenido(contenidoCompleto())).contenido, new Date('2026-10-19T12:00:00Z'));
+  assert.deepEqual(s.enCurso.map(e => e.empresa.es), ['Niñas Pro', 'JAPS Engineering SpA']);
+  assert.deepEqual(s.completadas.map(e => e.empresa.es), ['AIDA']);
   assert.equal(s.formacionPrincipal.memoriaTipo, 'memoria');
-  assert.equal(s.formacionOtras.length, 2);
+  assert.equal(s.formacionOtras.length, 1);
+  assert.deepEqual(s.cine.map(c => c.titulo.es), ['Festival', 'Querida', 'Líder de grupo de cine']);
   assert.deepEqual(s.cine.map(c => c.desplazamiento), ['0', 'auto', '12%']);
   assert.deepEqual(s.guardado, { es: 'Oct 2026', en: 'Oct 2026' });
   assert.equal(s.anio, '2026');
