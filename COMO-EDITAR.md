@@ -86,9 +86,11 @@ En **`contenido/general.md`** cambia `modo_gamer: sí` por `modo_gamer: no`.
 
 ## Si la revisión sale en rojo
 
-1. En el pull request, aprieta **"Details"** al lado de la revisión roja (o la pestaña **"Checks"**).
-2. Arriba verás **"❌ Hay que arreglar el contenido"** con una lista. Cada línea dice el archivo y qué arreglar, por ejemplo:
-   - `experiencia/2027-empresa.md`: 'inicio' debe verse así: 2026-04 (año y mes con dos dígitos)
+1. En el pull request, busca la revisión con la ❌ y aprieta **"Details"** a su derecha.
+2. Se abre una página con una lista de pasos. El paso en rojo **"Revisar el contenido"** ya viene abierto y muestra una línea con ✗ por cada problema: dice el archivo y qué arreglar. Por ejemplo:
+   - `✗ experiencia/2027-empresa.md → 'inicio' debe verse así: 2026-04 (año y mes con dos dígitos)`
+
+   Si prefieres verlo más ordenado, aprieta **"Summary"** (arriba a la izquierda): ahí aparece **"❌ Hay que arreglar el contenido"** con la misma lista.
 3. Vuelve a la pestaña **"Files changed"** del pull request, abre ese archivo con los **tres puntos (…) → "Edit file"**, arréglalo y aprieta **"Commit changes"** (queda en el mismo pull request).
 4. La revisión corre sola otra vez. Cuando esté ✅ verde, haz el merge.
 
