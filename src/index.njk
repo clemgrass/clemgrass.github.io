@@ -13,6 +13,16 @@ permalink: index.html
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.es }}</title>
 <meta name="description" content="{{ g.pitch.es }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ g.nombre1 }} {{ g.nombre2 }}">
+<meta property="og:description" content="{{ g.cargo.es }} · {{ g.universidad }}">
+<meta property="og:image" content="https://clemgrass.github.io/assets/og.png">
+<meta property="og:url" content="https://clemgrass.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
 {% include "secciones/control.njk" %}
