@@ -3,7 +3,7 @@ permalink: index.html
 ---
 {%- set g = sitio.general -%}
 <!doctype html>
-<html lang="es"
+<html lang="es" class="no-js"
   data-titulo-es="{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.es }}"
   data-titulo-en="{{ g.nombre1 }} {{ g.nombre2 }} — {{ g.cargo.en }}"
   data-desc-es="{{ g.pitch.es }}"
@@ -23,6 +23,8 @@ permalink: index.html
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/estilos.css">
+<script src="assets/js/idioma.js"></script>
+<script type="module" src="assets/js/animaciones.js"></script>
 </head>
 <body>
 {% include "secciones/control.njk" %}
