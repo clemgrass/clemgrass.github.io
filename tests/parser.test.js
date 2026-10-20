@@ -72,3 +72,20 @@ test('### es texto normal de la sección', () => {
   const r = parsearArchivo('---\na: b\n---\n## Español\nUno\n### Contacto\nDos\n');
   assert.equal(r.cuerpo.es, 'Uno\n### Contacto\nDos');
 });
+
+test('nombres de campo con tildes, espacios o mayúsculas se normalizan', () => {
+  const r = parsearArchivo('---\ninstitución: Saint George’s College\nEn Curso: sí\nTítulo_ES: Hola\n---\n');
+  assert.deepEqual(r.campos, { institucion: 'Saint George’s College', en_curso: 'sí', titulo_es: 'Hola' });
+  assert.deepEqual(r.problemas, []);
+});
+
+test('nombre de campo con símbolos sigue siendo error', () => {
+  const r = parsearArchivo('---\ncargo!: X\n---\n');
+  assert.deepEqual(r.problemas, [{ campo: null, mensaje: 'La línea "cargo!: X" debería verse así: campo: valor' }]);
+});
+
+test('comillas internas no se recortan', () => {
+  const r = parsearArchivo('---\ntitulo: "Querida" y "Beauchefiana"\nempresa: "Niñas Pro"\n---\n');
+  assert.equal(r.campos.titulo, '"Querida" y "Beauchefiana"');
+  assert.equal(r.campos.empresa, 'Niñas Pro');
+});

@@ -199,3 +199,26 @@ test('reporta todos los errores de todos los archivos', () => {
 test('formatearError', () => {
   assert.equal(formatearError({ archivo: 'cine/a.md', campo: 'inicio', mensaje: 'X' }), 'cine/a.md → X');
 });
+
+test('archivos o carpetas sueltos en contenido/ dan error', () => {
+  const { errores } = cargar({
+    '2027-nuevo.md': experiencia(),
+    'experiencias/x.md': experiencia(),
+    'notas.txt': 'hola',
+    '_borrador.md': 'se ignora',
+    '.gitkeep': ''
+  });
+  const mensaje = 'Esto no se usa: los trabajos van en experiencia/, los estudios en formacion/ y el cine en cine/. Muévelo o bórralo';
+  assert.deepEqual(errores, [
+    { archivo: '2027-nuevo.md', campo: null, mensaje },
+    { archivo: 'experiencias/', campo: null, mensaje },
+    { archivo: 'notas.txt', campo: null, mensaje }
+  ]);
+});
+
+test('email con mailto: o espacios es error', () => {
+  for (const valor of ['mailto:cgrassdev@gmail.com', 'cgrass dev@gmail.com']) {
+    const { errores } = cargar({ 'general.md': contenidoValido()['general.md'].replace('email: cgrassdev@gmail.com', `email: ${valor}`) });
+    assert.deepEqual(errores.map(e => e.mensaje), ["'email' debe ser solo la dirección, sin 'mailto:' ni espacios (ej. nombre@gmail.com)"], valor);
+  }
+});
