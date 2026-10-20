@@ -1,0 +1,18 @@
+{%- from "macros.njk" import t -%}
+{%- if sitio.cine.length %}
+<section class="cine">
+  <div class="cine-fondo">
+    <div class="cine-palabra" aria-hidden="true" data-grow>{{ t(sitio.textos.palabraCine) }}</div>
+  </div>
+  <div class="cine-contenido">
+    <h2 data-z="in">{{ t(sitio.textos.cine) }}</h2>
+    {%- for c in sitio.cine %}
+    <article class="cine-item" data-z="in" style="margin-left:{{ c.desplazamiento }}">
+      <span class="cine-fecha">{{ t(c.fecha) }}</span>
+      <h3>{{ t(c.titulo) }}</h3>
+      <p>{{ t(c.descripcion) }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}

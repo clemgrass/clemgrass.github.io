@@ -1,0 +1,2 @@
+{# Muestra un texto en ambos idiomas; el CSS oculta el que no corresponde. #}
+{% macro t(v) %}<span class="es" lang="es">{{ v.es }}</span><span class="en" lang="en">{{ v.en }}</span>{% endmacro %}

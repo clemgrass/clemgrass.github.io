@@ -1,0 +1,10 @@
+{%- from "macros.njk" import t -%}
+{%- set g = sitio.general -%}
+<section class="hero" data-z="out">
+  <h1 data-intro="0">{{ g.nombre1 }}<br>{{ g.nombre2 }}</h1>
+  <div class="hero-sub" data-intro="1">
+    <span class="hero-cargo">{{ t(g.cargo) }}</span>
+    <span class="hero-universidad">{{ g.universidad }}</span>
+  </div>
+  <span class="hero-scroll" data-intro="2"><span class="hero-linea"></span>{{ t(sitio.textos.desplazate) }}</span>
+</section>

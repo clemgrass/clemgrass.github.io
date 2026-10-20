@@ -1,0 +1,31 @@
+{%- from "macros.njk" import t -%}
+{%- set p = sitio.formacionPrincipal -%}
+<section class="formacion">
+  <div class="formacion-fantasma" aria-hidden="true" data-par="-0.35">{{ t(sitio.textos.palabraFormacion) }} {{ t(sitio.textos.palabraFormacion) }}</div>
+  <div class="formacion-contenido">
+    <div class="formacion-principal" data-z="in">
+      <span class="formacion-fecha">{{ p.fecha }}</span>
+      <div class="formacion-titulo">
+        <span>{{ t(p.titulo) }}</span>
+        <span class="formacion-institucion">{{ p.institucion }}</span>
+      </div>
+    </div>
+    {%- if p.memoriaTipo %}
+    <div class="formacion-memoria" data-z="in">
+      <span class="formacion-memoria-etiqueta">{{ t(sitio.textos[p.memoriaTipo]) }}</span>
+      <p>{{ t(p.memoria) }}</p>
+    </div>
+    {%- endif %}
+    {%- if sitio.formacionOtras.length %}
+    <div class="formacion-otras">
+      {%- for e in sitio.formacionOtras %}
+      <div class="formacion-otra" data-z="in">
+        <span class="formacion-otra-fecha">{{ e.fecha }}</span>
+        <span class="formacion-otra-titulo">{{ t(e.titulo) }}</span>
+        <span class="formacion-otra-institucion">{{ e.institucion }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</section>

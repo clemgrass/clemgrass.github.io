@@ -1,0 +1,17 @@
+{%- from "macros.njk" import t -%}
+{%- set g = sitio.general -%}
+<section class="contacto">
+  <div class="contacto-contenido" data-z="in">
+    <h2>{{ t(sitio.textos.contacto) }}</h2>
+    <p>{{ t(g.contacto) }}</p>
+    <div class="contacto-botones">
+      <a class="boton-email" href="mailto:{{ g.email }}">{{ g.email }}</a>
+      <a class="boton-borde" href="{{ g.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="boton-borde" href="{{ g.github }}" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="pie">
+      <span>© {{ sitio.anio }} {{ g.nombre1 }} {{ g.nombre2 }}</span>
+      <span>{{ t(sitio.textos.ultimoGuardado) }} — {{ t(sitio.guardado) }}</span>
+    </div>
+  </div>
+</section>
