@@ -1,0 +1,9 @@
+docs/
+Página web personal/
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+.superpowers/
+node_modules/
+_site/
