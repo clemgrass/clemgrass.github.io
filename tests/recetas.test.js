@@ -18,11 +18,15 @@ function copiaDelProyecto() {
   return dir;
 }
 
-function cambiar(dir, archivo, de, a) {
-  const ruta = path.join(dir, 'contenido', archivo);
-  const texto = fs.readFileSync(ruta, 'utf8');
-  assert.ok(texto.includes(de), `${archivo} no contiene ${de}`);
-  fs.writeFileSync(ruta, texto.replace(de, a));
+// Archivos publicados de una carpeta (sin _EJEMPLO), sean los que sean hoy: así las recetas no dependen del contenido actual.
+function publicados(c, carpeta) {
+  return fs.readdirSync(path.join(c, carpeta)).filter(f => f.endsWith('.md') && !f.startsWith('_')).map(f => path.join(c, carpeta, f));
+}
+
+function terminarTodos(c) {
+  for (const ruta of publicados(c, 'experiencia')) {
+    fs.writeFileSync(ruta, fs.readFileSync(ruta, 'utf8').replace(/^en_curso: sí$/m, 'en_curso: no'));
+  }
 }
 
 function suiteEn(dir) {
@@ -37,13 +41,15 @@ function suiteEn(dir) {
 test('todas las recetas juntas mantienen el check verde', () => {
   const dir = copiaDelProyecto();
   const c = path.join(dir, 'contenido');
-  cambiar(dir, 'experiencia/2026-japs.md', 'en_curso: sí', 'en_curso: no');
-  cambiar(dir, 'general.md', 'modo_gamer: sí', 'modo_gamer: no');
-  cambiar(dir, 'general.md', 'Me interesa', 'Hoy me interesa');
+  terminarTodos(c);
+  const general = path.join(c, 'general.md');
+  fs.writeFileSync(general, fs.readFileSync(general, 'utf8')
+    .replace(/^modo_gamer: .*$/m, 'modo_gamer: no')
+    .replace('## Español\n', '## Español\nHoy, '));
   fs.copyFileSync(path.join(c, 'experiencia/_EJEMPLO.md'), path.join(c, 'experiencia/2027-empresa.md'));
   fs.copyFileSync(path.join(c, 'cine/_EJEMPLO.md'), path.join(c, 'cine/2027-cortometraje.md'));
   fs.copyFileSync(path.join(c, 'formacion/_EJEMPLO.md'), path.join(c, 'formacion/2027-magister.md'));
-  fs.rmSync(path.join(c, 'cine/2023-lider-grupo-cine.md'));
+  for (const ruta of publicados(c, 'cine').slice(0, 1)) fs.rmSync(ruta);
   const r = suiteEn(dir);
   assert.equal(r.validar, 0);
   assert.equal(r.tests, 0, r.salida);
@@ -52,9 +58,8 @@ test('todas las recetas juntas mantienen el check verde', () => {
 test('sin trabajos en curso ni cine el check sigue verde', () => {
   const dir = copiaDelProyecto();
   const c = path.join(dir, 'contenido');
-  cambiar(dir, 'experiencia/2026-japs.md', 'en_curso: sí', 'en_curso: no');
-  cambiar(dir, 'experiencia/2026-ninas-pro.md', 'en_curso: sí', 'en_curso: no');
-  for (const f of fs.readdirSync(path.join(c, 'cine'))) if (!f.startsWith('_')) fs.rmSync(path.join(c, 'cine', f));
+  terminarTodos(c);
+  for (const ruta of publicados(c, 'cine')) fs.rmSync(ruta);
   const r = suiteEn(dir);
   assert.equal(r.validar, 0);
   assert.equal(r.tests, 0, r.salida);

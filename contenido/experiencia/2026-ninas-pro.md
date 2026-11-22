@@ -5,7 +5,7 @@ empresa: Niñas Pro
 fecha_es: Oct — Nov 2026
 fecha_en: Oct — Nov 2026
 inicio: 2026-10
-en_curso: sí
+en_curso: no
 ---
 
 ## Español
