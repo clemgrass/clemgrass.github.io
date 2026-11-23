@@ -21,6 +21,7 @@ test('build real', () => {
   assert.ok(!/Descargar CV|Download CV|\.pdf|7999/.test(html));
   assert.ok(!/fonts\.googleapis|(href|src)="\//.test(html));
   assert.ok(html.includes('mailto:cgrassdev@gmail.com'));
+  assert.ok(html.includes('href="https://cgrassdev.itch.io/"'));
 });
 
 test('build: tarjetas, orden y textos', () => {
