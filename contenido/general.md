@@ -16,6 +16,7 @@ universidad: Universidad de Chile
 email: cgrassdev@gmail.com
 linkedin: https://www.linkedin.com/in/clemente-grass-briones/
 github: https://github.com/clemgrass
+itchio: https://cgrassdev.itch.io/
 
 # sí = títulos estilo videojuego ("Partida en curso"); no = títulos neutros ("Actualmente").
 modo_gamer: sí
